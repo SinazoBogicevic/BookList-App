@@ -23,12 +23,13 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"/>
     
-    <!-- only visible when recyler has no items-->
+    <!-- only visible when recycler has no items-->
     <TextView
         android:id="@+id/no_items_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center"
+        android:text="Empty"/>
 
     <!-- loading -->
     <ProgressBar

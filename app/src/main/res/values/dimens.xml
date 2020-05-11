@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_bottom">16dp</dimen>
-    <dimen name="card_dimen">200dp</dimen>
+    <dimen name="card_height">200dp</dimen>
+    <dimen name="card_width">150dp</dimen>
+    <dimen name="card_radius">10dp</dimen>
+    <dimen name="book_width">127dp</dimen>
+    <dimen name="book_height">134dp</dimen>
+    <dimen name="padding">8dp</dimen>
 </resources>
