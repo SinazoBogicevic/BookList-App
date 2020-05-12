@@ -4,10 +4,12 @@ public class Book {
     private String name;
     private String author;
     private String thumbnail;
+    private String description;
+    private String language;
     private int rating;
     private int price;
     private int pages;
-    private String description;
+
 
     /***
      *
@@ -18,8 +20,9 @@ public class Book {
      * @param price -(int) price of the book
      * @param pages -(int) number of pages in the book
      * @param description -(String) description of the book
+     * @param language -(String) language book is available in
      */
-    public Book(String name, String author, String thumbnail, int rating, int price, int pages, String description) {
+    public Book(String name, String author, String thumbnail, int rating, int price, int pages, String description, String language) {
         this.name = name;
         this.author = author;
         this.thumbnail = thumbnail;
@@ -27,6 +30,7 @@ public class Book {
         this.price = price;
         this.pages = pages;
         this.description = description;
+        this.language = language;
     }
 
     public String getName() {

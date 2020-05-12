@@ -91,10 +91,25 @@ public final class Utils {
                 //extract string url for the specific book cover
                 String imageUrl = imageLinks.getString("smallThumbnail");
 
-                /**
-                 * Extract the value for the key called "smallThumbnail"
-                 * using REGEX and StringBuilder
-                 */
+                //Extract JSONString associated with title
+                String title = volumeInfo.getString("title");
+
+
+                //Extract JSONString associated with description
+                String description = volumeInfo.getString("description");
+
+                //extract the string associated with language
+                String language = volumeInfo.getString("language");
+
+                //Extract JSONSint associated with description
+                int cost = volumeInfo.getInt("");
+
+                //extract number of pages
+                int pageCount = volumeInfo.getInt("pageCount");
+
+                //extract the star rating
+                int starRating = volumeInfo.getInt("");
+
             }
 
         }catch(JSONException e){
