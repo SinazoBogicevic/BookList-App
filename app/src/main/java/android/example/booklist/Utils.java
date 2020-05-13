@@ -7,6 +7,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +64,7 @@ public final class Utils {
                  * for that book
                  */
                 JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
+                JSONObject saleInfo = currentBook.getJSONObject("saleInfo");
 
                 // Extract the value for the key called "author"
                 String author;
@@ -80,12 +85,6 @@ public final class Utils {
                     author = "** missing info on authors **";
                 }
 
-                /**
-                 * For a given book, extract the JSONObject associated with the
-                 * key called "imageLinks", which represents a list of all images
-                 * associated with that book
-                 */
-                String thumbnail;
                 JSONObject imageLinks = volumeInfo.getJSONObject("imageLinks");
 
                 //extract string url for the specific book cover
@@ -96,30 +95,57 @@ public final class Utils {
 
 
                 //Extract JSONString associated with description
-                String description = volumeInfo.getString("description");
+                String description;
+                if(volumeInfo.has("description")){
+                     description = volumeInfo.getString("description");
+                }else{
+                    description = "** Description Unavailable";
+                }
 
                 //extract the string associated with language
                 String language = volumeInfo.getString("language");
 
-                //Extract JSONSint associated with description
-                int cost = volumeInfo.getInt("");
+                //Extract String associated with price
+                String saleAbility = saleInfo.getString("saleAbility");
 
                 //extract number of pages
                 int pageCount = volumeInfo.getInt("pageCount");
 
+                int starRating = 0;
                 //extract the star rating
-                int starRating = volumeInfo.getInt("");
+                if(volumeInfo.has("averageRating")){
+                    starRating = volumeInfo.getInt("averageRating");
+                }
+
+                //create a new {@link book} object
+                books.add(new Book(title,author,imageUrl,starRating,saleAbility,pageCount,description,language));
 
             }
 
         }catch(JSONException e){
-            /**
-             * If an error is thrown when executing any of the above statements int the try block
-             * catch the exception here, so the app doesn't crash. Print the log message
-             * with the message from the exception
-             */
-            Log.e(LOG_TAG, "Problme with parsing the book ", e);
+            Log.e(LOG_TAG, "Problem with parsing the book ", e);
         }
         return books;
     }
+
+    /**
+     * Make an HTTP request to the given URL and return a String as the response.
+     */
+
+    private static  String makeHttpRequest(URL url) throws IOException{
+
+        // To avoid "magic numbers" in code, all numeric values mustn't been used directly in a code
+        final int READ_TIMEOUT = 10000;
+        final int CONNECT_TIMEOUT = 15000;
+        final int CORRECT_RESPONSE_CODE = 200;
+
+        String jsonResponse = "";
+
+        if(url == null){
+            return jsonResponse;
+        }
+        HttpURLConnection uRLConnection = null;
+        InputStream inputStream = null;
+    }
+
 }
